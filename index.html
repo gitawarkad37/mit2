@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>FoodZone</title>
-
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
       background: #f5f5f5;
+      color: #333;
     }
 
     nav {
       background: #ff4757;
-      padding: 15px 25px;
+      padding: 20px 25px;
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    nav h2 {
+      font-size: 28px;
+      letter-spacing: 2px;
+      font-weight: bold;
     }
 
     nav a {
@@ -26,43 +33,76 @@
       text-decoration: none;
       font-weight: bold;
       cursor: pointer;
+      font-size: 18px;
+    }
+
+    nav a:hover {
+      color: #FFD700;
     }
 
     .container {
-      padding: 20px;
+      padding: 20px 30px;
     }
 
-    #search {
+    .search-bar {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 25px;
+      font-size: 18px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      background-color: #fff;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      font-weight: 500;
     }
 
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
+      margin-bottom: 50px;
     }
 
     .card {
       background: white;
       padding: 20px;
-      border-radius: 10px;
+      border-radius: 15px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
     }
 
     .card h3 {
       color: #ff4757;
-      margin-bottom: 10px;
+      margin: 15px 0;
+      font-size: 22px;
     }
 
     .card p {
       font-size: 18px;
       font-weight: bold;
+    }
+
+    .card button {
+      background: #ff4757;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .card button:hover {
+      background: #e84393;
     }
 
     .page {
@@ -71,6 +111,24 @@
 
     .active {
       display: block;
+    }
+
+    .cart-btn {
+      background: #ff4757;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      display: block;
+      margin-top: 20px;
+      text-decoration: none;
+      font-size: 16px;
+      transition: background 0.3s;
+    }
+
+    .cart-btn:hover {
+      background: #e84393;
     }
   </style>
 </head>
@@ -82,33 +140,38 @@
     <div>
       <a onclick="showHome()">Home</a>
       <a onclick="showAbout()">About</a>
+      <a onclick="showLogin()">Login</a>
     </div>
   </nav>
 
   <!-- HOME PAGE -->
   <div class="container page active" id="home">
-    <input type="text" id="search" placeholder="Search food..." onkeyup="searchFood()">
+    <input type="text" id="search" class="search-bar" placeholder="Search food..." onkeyup="searchFood()">
 
     <div class="products" id="productList">
       <div class="card">
+        <img src="https://images.pexels.com/photos/1186634/pexels-photo-1186634.jpeg" alt="Pizza">
         <h3>Pizza</h3>
         <p>₹250</p>
+        <button class="cart-btn" onclick="addToCart('Pizza', 250)">Add to Cart</button>
       </div>
       <div class="card">
+        <img src="https://images.pexels.com/photos/4113532/pexels-photo-4113532.jpeg" alt="Burger">
         <h3>Burger</h3>
         <p>₹150</p>
+        <button class="cart-btn" onclick="addToCart('Burger', 150)">Add to Cart</button>
       </div>
       <div class="card">
+        <img src="https://images.pexels.com/photos/1059197/pexels-photo-1059197.jpeg" alt="Biryani">
         <h3>Biryani</h3>
         <p>₹300</p>
+        <button class="cart-btn" onclick="addToCart('Biryani', 300)">Add to Cart</button>
       </div>
       <div class="card">
+        <img src="https://images.pexels.com/photos/5320255/pexels-photo-5320255.jpeg" alt="Sandwich">
         <h3>Sandwich</h3>
         <p>₹120</p>
-      </div>
-      <div class="card">
-        <h3>Pasta</h3>
-        <p>₹220</p>
+        <button class="cart-btn" onclick="addToCart('Sandwich', 120)">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -116,43 +179,73 @@
   <!-- ABOUT PAGE -->
   <div class="container page" id="about">
     <h1>About FoodZone</h1>
-    <p>
-      FoodZone hi ek demo food delivery website aahe.
-      Ya website madhe tumhi food items search karu shakta
-      ani tyanchi price pan baghu shakta.
-    </p>
-    <p>
-      Hi website HTML, CSS ani JavaScript vaprun banavli aahe.
-    </p>
+    <p>FoodZone is a demo food delivery website. You can search food items and check their prices here.</p>
+  </div>
+
+  <!-- LOGIN PAGE -->
+  <div class="container page" id="login">
+    <h1>Login</h1>
+    <input type="text" placeholder="Username" id="username" />
+    <input type="password" placeholder="Password" id="password" />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- CART PAGE -->
+  <div class="container page" id="cart">
+    <h1>Your Cart</h1>
+    <div class="cart-items" id="cartItems"></div>
+    <a class="cart-btn" onclick="showHome()">Back to Home</a>
   </div>
 
   <!-- JAVASCRIPT -->
   <script>
+    let cart = [];
+
+    function addToCart(foodName, price) {
+      cart.push({ foodName, price });
+      alert(foodName + " added to cart!");
+    }
+
     function showHome() {
       document.getElementById("home").classList.add("active");
       document.getElementById("about").classList.remove("active");
+      document.getElementById("login").classList.remove("active");
+      document.getElementById("cart").classList.remove("active");
+      renderCart();
     }
 
     function showAbout() {
       document.getElementById("about").classList.add("active");
       document.getElementById("home").classList.remove("active");
+      document.getElementById("login").classList.remove("active");
+      document.getElementById("cart").classList.remove("active");
     }
 
-    function searchFood() {
-      let input = document.getElementById("search").value.toLowerCase();
-      let cards = document.getElementsByClassName("card");
+    function showLogin() {
+      document.getElementById("login").classList.add("active");
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("about").classList.remove("active");
+      document.getElementById("cart").classList.remove("active");
+    }
 
-      for (let i = 0; i < cards.length; i++) {
-        let foodName = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-        if (foodName.includes(input)) {
-          cards[i].style.display = "block";
-        } else {
-          cards[i].style.display = "none";
-        }
+    function showCart() {
+      document.getElementById("cart").classList.add("active");
+      document.getElementById("home").classList.remove("active");
+      document.getElementById("about").classList.remove("active");
+      document.getElementById("login").classList.remove("active");
+      renderCart();
+    }
+
+    function renderCart() {
+      let cartItems = document.getElementById("cartItems");
+      cartItems.innerHTML = '';
+      cart.forEach(item => {
+        cartItems.innerHTML += `<p>${item.foodName} - ₹${item.price}</p>`;
+      });
+      if (cart.length === 0) {
+        cartItems.innerHTML = '<p>Your cart is empty.</p>';
       }
     }
-  </script>
 
-</body>
-</html>
+    function search
 
