@@ -1,266 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meesho-like Front Page</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
-    }
-
-    /* Navbar */
-    nav {
-      background: #ff4d4d;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    nav h2 {
-      color: white;
-      font-size: 30px;
-      letter-spacing: 2px;
-      font-weight: bold;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      position: relative;
-      transition: color 0.3s ease;
-    }
-
-    nav a:hover {
-      color: #FFD700;
-    }
-
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      width: 100%;
-      height: 3px;
-      background-color: #FFD700;
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 0.3s ease-out;
-    }
-
-    nav a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    /* Search bar */
-    .search-bar {
-      width: 100%;
-      padding: 15px;
-      font-size: 18px;
-      border-radius: 8px;
-      border: 2px solid #ddd;
-      background-color: #fff;
-      margin-bottom: 30px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      transition: border-color 0.3s ease;
-    }
-
-    .search-bar:focus {
-      border-color: #ff4d4d;
-      outline: none;
-    }
-
-    /* Product Grid */
-    .container {
-      padding: 30px;
-    }
-
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-
-    .card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px;
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover img {
-      transform: scale(1.05);
-    }
-
-    .card h3 {
-      color: #ff4d4d;
-      font-size: 22px;
-      margin: 15px 0;
-    }
-
-    .card p {
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .card button {
-      background: #ff4d4d;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      border: none;
-      font-size: 16px;
-      transition: background 0.3s ease;
-    }
-
-    .card button:hover {
-      background: #e84393;
-    }
-
-    .page {
-      display: none;
-    }
-
-    .active {
-      display: block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadkumar Shinde College - Aagur</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+    <!-- Navbar Section -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <!-- NAVBAR -->
-  <nav>
-    <h2>🛍️ ShopZone</h2>
-    <div>
-      <a onclick="showHome()">Home</a>
-      <a onclick="showAbout()">About</a>
-      <a onclick="showLogin()">Login</a>
-    </div>
-  </nav>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="home-content">
+            <h1>Welcome to Nadkumar Shinde College, Aagur</h1>
+            <p>Where knowledge meets excellence!</p>
+        </div>
+    </section>
 
-  <!-- HOME PAGE -->
-  <div class="container page active" id="home">
-    <input type="text" id="search" class="search-bar" placeholder="Search for products..." onkeyup="searchProduct()">
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-content">
+            <h2>About Us</h2>
+            <p>Nadkumar Shinde College, Aagur is dedicated to providing quality education and fostering a learning
+                environment that encourages personal growth and academic success. Our experienced faculty, modern
+                infrastructure, and student-centered approach ensure that each student is empowered to achieve their
+                full potential.</p>
+        </div>
+    </section>
 
-    <div class="products" id="productList">
-      <!-- Clothing Product Cards -->
-      <div class="card">
-        <img src="https://images.pexels.com/photos/3800466/pexels-photo-3800466.jpeg" alt="Clothing Product 1">
-        <h3>Men's Shirt</h3>
-        <p>₹599</p>
-        <button onclick="addToCart('Men\'s Shirt', 599)">Add to Cart</button>
-      </div>
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-content">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, feel free to reach out to us:</p>
+            <ul>
+                <li>Email: contact@nadkumarsc.edu</li>
+                <li>Phone: +91 123 456 7890</li>
+                <li>Address: Nadkumar Shinde College, Aagur, Maharashtra, India</li>
+            </ul>
+        </div>
+    </section>
 
-      <div class="card">
-        <img src="https://images.pexels.com/photos/1610454/pexels-photo-1610454.jpeg" alt="Clothing Product 2">
-        <h3>Women's Dress</h3>
-        <p>₹899</p>
-        <button onclick="addToCart('Women\'s Dress', 899)">Add to Cart</button>
-      </div>
-
-      <!-- Jewelry Product Cards -->
-      <div class="card">
-        <img src="https://images.pexels.com/photos/4167579/pexels-photo-4167579.jpeg" alt="Jewelry Product 1">
-        <h3>Gold Necklace</h3>
-        <p>₹1500</p>
-        <button onclick="addToCart('Gold Necklace', 1500)">Add to Cart</button>
-      </div>
-
-      <div class="card">
-        <img src="https://images.pexels.com/photos/1040442/pexels-photo-1040442.jpeg" alt="Jewelry Product 2">
-        <h3>Diamond Ring</h3>
-        <p>₹3500</p>
-        <button onclick="addToCart('Diamond Ring', 3500)">Add to Cart</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ABOUT PAGE -->
-  <div class="container page" id="about">
-    <h1>About ShopZone</h1>
-    <p>ShopZone is your one-stop shop for amazing clothing and jewelry at unbeatable prices!</p>
-  </div>
-
-  <!-- LOGIN PAGE -->
-  <div class="container page" id="login">
-    <h1>Login</h1>
-    <input type="text" placeholder="Username" id="username" />
-    <input type="password" placeholder="Password" id="password" />
-    <button onclick="login()">Login</button>
-  </div>
-
-  <!-- JAVASCRIPT -->
-  <script>
-    let cart = [];
-
-    function addToCart(productName, price) {
-      cart.push({ productName, price });
-      alert(productName + " added to cart!");
-    }
-
-    function showHome() {
-      document.getElementById("home").classList.add("active");
-      document.getElementById("about").classList.remove("active");
-      document.getElementById("login").classList.remove("active");
-    }
-
-    function showAbout() {
-      document.getElementById("about").classList.add("active");
-      document.getElementById("home").classList.remove("active");
-      document.getElementById("login").classList.remove("active");
-    }
-
-    function showLogin() {
-      document.getElementById("login").classList.add("active");
-      document.getElementById("home").classList.remove("active");
-      document.getElementById("about").classList.remove("active");
-    }
-
-    function searchProduct() {
-      let input = document.getElementById("search").value.toLowerCase();
-      let cards = document.getElementsByClassName("card");
-
-      for (let i = 0; i < cards.length; i++) {
-        let productName = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
-        if (productName.includes(input)) {
-          cards[i].style.display = "block";
-        } else {
-          cards[i].style.display = "none";
-        }
-      }
-    }
-  </script>
-
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2026 Nadkumar Shinde College, Aagur. All Rights Reserved.</p>
+    </footer>
 </body>
+
 </html>
 
