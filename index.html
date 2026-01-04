@@ -1,100 +1,158 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Codingwale DevOps Tools</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-100">
+  <meta charset="UTF-8">
+  <title>FoodZone</title>
 
-  <!-- Navbar -->
-  <nav class="bg-blue-600 text-white p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Codingwale</h1>
-    <ul class="flex space-x-6">
-      <li><a href="#" class="hover:text-gray-200">Home</a></li>
-      <li><a href="#" class="hover:text-gray-200">DevOps Tools</a></li>
-      <li><a href="#" class="hover:text-gray-200">About</a></li>
-      <li><a href="#" class="hover:text-gray-200">Contact</a></li>
-    </ul>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+    }
+
+    nav {
+      background: #ff4757;
+      padding: 15px 25px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      margin-left: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    #search {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      color: #ff4757;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <h2>🍽 FoodZone</h2>
+    <div>
+      <a onclick="showHome()">Home</a>
+      <a onclick="showAbout()">About</a>
+    </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="text-center py-16 bg-white">
-    <h2 class="text-4xl font-bold text-gray-800">
-      DevOps Tools Platform
-    </h2>
-    <p class="mt-4 text-gray-600">
-      Learn & Explore DevOps with Codingwale
-    </p>
-    <p class="mt-2 text-sm text-gray-500">
-      Developed by <span class="font-semibold">Pankaj Tribhuvan Sir</span>
-    </p>
-  </section>
+  <!-- HOME PAGE -->
+  <div class="container page active" id="home">
+    <input type="text" id="search" placeholder="Search food..." onkeyup="searchFood()">
 
-  <!-- Tools Section -->
-  <section class="p-8">
-    <h3 class="text-2xl font-bold text-center mb-8">Popular DevOps Tools</h3>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="text-xl font-semibold">Docker</h4>
-        <p class="text-gray-600 mt-2">
-          Containerization tool for application deployment.
-        </p>
+    <div class="products" id="productList">
+      <div class="card">
+        <h3>Pizza</h3>
+        <p>₹250</p>
       </div>
-
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="text-xl font-semibold">Kubernetes</h4>
-        <p class="text-gray-600 mt-2">
-          Container orchestration platform.
-        </p>
+      <div class="card">
+        <h3>Burger</h3>
+        <p>₹150</p>
       </div>
-
-      <div class="bg-white p-6 rounded-lg shadow">
-        <h4 class="text-xl font-semibold">Jenkins</h4>
-        <p class="text-gray-600 mt-2">
-          CI/CD automation tool.
-        </p>
+      <div class="card">
+        <h3>Biryani</h3>
+        <p>₹300</p>
+      </div>
+      <div class="card">
+        <h3>Sandwich</h3>
+        <p>₹120</p>
+      </div>
+      <div class="card">
+        <h3>Pasta</h3>
+        <p>₹220</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Footer -->
-  <footer class="bg-blue-600 text-white text-center p-4 mt-10">
-    <p>© 2026 Codingwale | DevOps by Pankaj Tribhuvan Sir</p>
-  </footer>
+  <!-- ABOUT PAGE -->
+  <div class="container page" id="about">
+    <h1>About FoodZone</h1>
+    <p>
+      FoodZone hi ek demo food delivery website aahe.
+      Ya website madhe tumhi food items search karu shakta
+      ani tyanchi price pan baghu shakta.
+    </p>
+    <p>
+      Hi website HTML, CSS ani JavaScript vaprun banavli aahe.
+    </p>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    function showHome() {
+      document.getElementById("home").classList.add("active");
+      document.getElementById("about").classList.remove("active");
+    }
+
+    function showAbout() {
+      document.getElementById("about").classList.add("active");
+      document.getElementById("home").classList.remove("active");
+    }
+
+    function searchFood() {
+      let input = document.getElementById("search").value.toLowerCase();
+      let cards = document.getElementsByClassName("card");
+
+      for (let i = 0; i < cards.length; i++) {
+        let foodName = cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+        if (foodName.includes(input)) {
+          cards[i].style.display = "block";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 
 </body>
 </html>
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
